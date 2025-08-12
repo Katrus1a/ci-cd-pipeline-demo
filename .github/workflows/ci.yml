@@ -15,11 +15,16 @@ jobs:
 
       - name: Install deps
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run SQLFluff
-        run: sqlfluff lint sql/
+      # --- SQLFluff: автофікс ---
+      - name: Run SQLFluff fix
+        run: sqlfluff fix sql/ --disable-progress-bar
+
+      # --- SQLFluff: перевірка після фікса ---
+      - name: Run SQLFluff lint
+        run: sqlfluff lint sql/ --disable-progress-bar
 
       - name: Run Black (check)
         run: black --check src/

@@ -1,13 +1,22 @@
+# .sqlfluff
 [sqlfluff]
 dialect = postgres
-exclude_rules = L009,L031
+# Дозволяємо короткі alias у FROM (часто в прикладах):
+exclude_rules = L031
 
+# Відступи: 4 пробіли
 [sqlfluff:rules:layout.indent]
 indent_unit = space
 tab_space_size = 4
 
+# Максимальна довжина рядка
+[sqlfluff:rules:layout.long_lines]
+max_line_length = 100
+
+# Ключові слова UPPERCASE (SELECT, FROM, WHERE)
 [sqlfluff:rules:capitalisation.keywords]
 capitalisation_policy = upper
 
+# Ідентифікатори lower_case (імена таблиць/полів)
 [sqlfluff:rules:capitalisation.identifiers]
 capitalisation_policy = lower
