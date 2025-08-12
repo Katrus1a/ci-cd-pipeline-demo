@@ -1,0 +1,17 @@
+# .sqlfluff
+[sqlfluff]
+dialect = postgres
+# інколи в навчальних прикладах зручно дозволити короткі alias у FROM:
+exclude_rules = L031
+
+# довжина рядка ~ як у Python-частині
+[sqlfluff:rules:L016]
+max_line_length = 100
+
+# стиль ідентифікаторів: lower_case
+[sqlfluff:rules:L010]
+capitalisation_policy = lower
+
+# ключові слова UPPERCASE (SELECT, FROM, WHERE)
+[sqlfluff:rules:L014]
+capitalisation_policy = upper
