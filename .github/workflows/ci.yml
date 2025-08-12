@@ -1,0 +1,31 @@
+name: CI Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run SQLFluff
+        run: sqlfluff lint sql/
+
+      - name: Run Black (check)
+        run: black --check src/
+
+      - name: Run Flake8
+        run: flake8 src/
+
+      - name: Build Docker image
+        run: docker build -t ci-cd-pipeline-demo .
