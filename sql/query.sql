@@ -1,5 +1,5 @@
 SELECT
-  id,
-  name
+    id,
+    name
 FROM
-  users;
+    users;

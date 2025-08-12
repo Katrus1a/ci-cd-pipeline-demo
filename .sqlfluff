@@ -5,13 +5,11 @@ dialect = postgres
 exclude_rules = L031
 
 # довжина рядка ~ як у Python-частині
-[sqlfluff:rules:L016]
+[sqlfluff:rules:layout.long_lines]
 max_line_length = 100
 
-# стиль ідентифікаторів: lower_case
-[sqlfluff:rules:L010]
-capitalisation_policy = lower
-
-# ключові слова UPPERCASE (SELECT, FROM, WHERE)
-[sqlfluff:rules:L014]
+[sqlfluff:rules:capitalisation.keywords]
 capitalisation_policy = upper
+
+[sqlfluff:rules:capitalisation.identifiers]
+capitalisation_policy = lower
