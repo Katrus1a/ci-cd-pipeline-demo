@@ -1,12 +1,10 @@
-# .sqlfluff
 [sqlfluff]
 dialect = postgres
-# інколи в навчальних прикладах зручно дозволити короткі alias у FROM:
-exclude_rules = L031
+exclude_rules = L009,L031
 
-# довжина рядка ~ як у Python-частині
-[sqlfluff:rules:layout.long_lines]
-max_line_length = 100
+[sqlfluff:rules:layout.indent]
+indent_unit = space
+tab_space_size = 4
 
 [sqlfluff:rules:capitalisation.keywords]
 capitalisation_policy = upper
