@@ -26,6 +26,9 @@ jobs:
       - name: Run SQLFluff lint
         run: sqlfluff lint sql/ --disable-progress-bar
 
+      - name: Run Black (auto-fix)
+        run: black src/
+
       - name: Run Black (check)
         run: black --check src/
 
@@ -34,3 +37,17 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t ci-cd-pipeline-demo .
+
+      - name: Run Black (auto-fix)
+        run: black src/
+
+      - name: Run tests
+        run: pytest -q
+
+      - name: Run app in container
+        run: |
+          cid=$(docker run -d ci-cd-pipeline-demo)
+          sleep 1
+          docker logs "$cid" | tee container.log
+          docker rm -f "$cid"
+
